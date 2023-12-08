@@ -15,28 +15,25 @@ class SessionViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
-        # Associate the new session with the currently authenticated user
         serializer.save(user=self.request.user)
 
     @action(detail=True, methods=['post'])
     def capture_pane(self, request, pk=None):
         session = self.get_object()
         try:
-            output = subprocess.check_output(
-                ['tmux', 'capture-pane', '-b', f'session-{session.id}', '-p']
-            ).decode('utf-8')
+            output = session.capture_pane()
+            return Response(output, content_type='text/plain')
         except subprocess.CalledProcessError as e:
             return Response(str(e), status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-        return Response(output, content_type='text/plain')
 
     @action(detail=True, methods=['post'])
     def send_keys(self, request, pk=None):
         session = self.get_object()
         keys = request.data.get('keys', '')
         try:
-            subprocess.run(
-                ['tmux', 'send-keys', '-t', f'session-{session.id}', keys, 'C-m']
+            session.send_keys(keys)
+            return Response(
+                {'detail': 'Keys sent successfully'}, status=status.HTTP_200_OK
             )
         except subprocess.CalledProcessError as e:
             return Response(str(e), status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-        return Response({'detail': 'Keys sent successfully'}, status=status.HTTP_200_OK)

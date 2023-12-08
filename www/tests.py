@@ -58,4 +58,4 @@ def test_session_workflow(user, api_client):
     # Delete the session
     url = reverse('session-detail', args=[new_session_id])
     response = api_client.delete(url)
-    assert response.status_id == status.HTTP_204_NO_CONTENT
+    assert response.status_code == status.HTTP_204_NO_CONTENT
