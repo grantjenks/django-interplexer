@@ -32,9 +32,3 @@ Which executes "tmux send-keys -t session-{session.id} {keys}"
 Use Django REST Framework for everything.
 
 4. DELETE a session executes "tmux kill-session -t session-{session.id}"
-
-## TODO
-
-0. Ensure proper error handling and response formatting.
-0. Refactor and comment code for maintainability.
-0. Write/update documentation for the REST API, covering all endpoints and usage.
