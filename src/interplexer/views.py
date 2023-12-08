@@ -14,6 +14,10 @@ class SessionViewSet(viewsets.ModelViewSet):
     serializer_class = SessionSerializer
     permission_classes = [IsAuthenticated]
 
+    def perform_create(self, serializer):
+        # Associate the new session with the currently authenticated user
+        serializer.save(user=self.request.user)
+
     @action(detail=True, methods=['post'])
     def capture_pane(self, request, pk=None):
         session = self.get_object()
