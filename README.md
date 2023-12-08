@@ -35,9 +35,7 @@ Use Django REST Framework for everything.
 
 ## TODO
 
-0. Implement permission classes to protect API endpoints.
 0. Write tests for API endpoints to ensure functionality.
 0. Ensure proper error handling and response formatting.
 0. Write/update documentation for the REST API, covering all endpoints and usage.
 0. Refactor and comment code for maintainability.
-0. Set up Continuous Integration using GitHub Actions.
