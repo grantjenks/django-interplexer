@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "django-interplexer"
+description = "Django Interplexer"
+authors = [
+    {"name" = "Grant Jenks", "email" = "contact@grantjenks.com"},
+]
+readme = "README.md"
+requires-python = ">=3.7"
+keywords = ["django", "tmux"]
+license = {"text" = "Apache 2.0"}
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Framework :: Django",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Natural Language :: English",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+dependencies = ["Django"]
+dynamic = ["version"]
+
+[project.urls]
+Documentation = "https://grantjenks.com/docs/django-interplexer/"
+Source = "https://github.com/grantjenks/django-interplexer"
+Tracker = "https://github.com/grantjenks/django-interplexer/issues"
+
+[tool.setuptools.dynamic]
+version = {attr = "interplexer.__version__"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
