@@ -38,7 +38,7 @@ where = ["src"]
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "www.settings"
 python_files = ["tests.py", "test_*.py", "*_tests.py"]
-addopts = "--cov www --cov-report term"
+addopts = "--cov www --cov interplexer --cov-report term"
 
 [tool.ruff]
 format.quote-style = "single"
