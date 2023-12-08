@@ -18,7 +18,7 @@ def api_client():
 def test_access_unauthenticated(api_client):
     url = reverse('session-list')
     response = api_client.get(url)
-    assert response.status_code == status.HTTP_401_UNAUTHORIZED
+    assert response.status_code == status.HTTP_403_FORBIDDEN
 
 
 def test_access_authenticated(user, api_client):
