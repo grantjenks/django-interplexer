@@ -21,7 +21,7 @@ classifiers = [
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
 ]
-dependencies = ["Django"]
+dependencies = ["Django", "djangorestframework"]
 dynamic = ["version"]
 
 [project.urls]
@@ -34,3 +34,37 @@ version = {attr = "interplexer.__version__"}
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "www.settings"
+python_files = ["tests.py", "test_*.py", "*_tests.py"]
+addopts = "--cov www --cov-report term"
+
+[tool.ruff]
+format.quote-style = "single"
+
+[tool.ruff.lint]
+ignore = [
+    # E501 Line too long
+    "E501",
+]
+select = [
+    # pycodestyle
+    "E",
+    # Pyflakes
+    "F",
+    # pyupgrade
+    "UP",
+    # flake8-bugbear
+    "B",
+    # flake8-simplify
+    "SIM",
+    # isort
+    "I",
+]
+
+[tool.coverage.run]
+omit = [
+    "*/wsgi.py",
+    "*/migrations/*"
+]
